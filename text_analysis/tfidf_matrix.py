@@ -1,6 +1,6 @@
 import re
 import jieba
-import itertools
+# import itertools
 import zhon.hanzi as chinese
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
