@@ -20,7 +20,7 @@ def jieba_tokenizer(doc):
 
 
 weiboes = wr.Weibo_Reader_Line_by_Line(r"../data/weibo.csv")
-texts = [item.content for item in itertools.islice(weiboes.weibo_items(), 1000)]
+texts = [item.content for item in weiboes.weibo_items()]
 count_vect = CountVectorizer(tokenizer=jieba_tokenizer)
 dtm = count_vect.fit_transform(texts)
 print(count_vect.get_feature_names())
