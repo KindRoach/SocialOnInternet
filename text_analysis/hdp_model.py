@@ -46,15 +46,14 @@ else:
     corpus = [dictionary.doc2bow(text) for text in texts]
     corpora.MmCorpus.serialize(mm_path, corpus)
 
-lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=20)
-topics = lsi.show_topics(num_topics=20, num_words=10)
+hdp = models.HdpModel(corpus, id2word=dictionary)
+topics = hdp.show_topics(num_topics=20, num_words=10)
 for topic in topics:
     print(topic[1])
 
-
 print("____________________________________________________________________________________________________")
 
-lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=100)
-topics = lsi.show_topics(num_topics=100, num_words=10)
+hdp = models.HdpModel(corpus, id2word=dictionary, alpha=0.05)
+topics = hdp.show_topics(num_topics=1000, num_words=10)
 for topic in topics:
     print(topic[1])
