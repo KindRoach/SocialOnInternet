@@ -100,8 +100,6 @@ class Weibo_Reader_Line_by_Line(object):
     def weibo_items(self):
         user_count = 0
         user = dict()
-        writter_id = -1
-        forwarder_id = -1
         for line in self.lines():
             tokens = line.split(',')
             if len(tokens) != 6:
@@ -111,6 +109,7 @@ class Weibo_Reader_Line_by_Line(object):
                 writter_id = user[writter]
             else:
                 user_count += 1
+                writter_id = user_count
                 user[writter] = user_count
             datetime = tokens[1]
             content = tokens[0]
@@ -124,6 +123,7 @@ class Weibo_Reader_Line_by_Line(object):
                     forwarder_id = user[forwarder]
                 else:
                     user_count += 1
+                    forwarder_id = user_count
                     user[forwarder] = user_count
             yield Weibo_item(writter, writter_id, datetime, content, forwarder, forwarder_id)
 
